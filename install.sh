@@ -17,4 +17,6 @@ fi
 ln -s `pwd`/_vimrc ~/.vimrc
 ln -s `pwd` ~/.vim
 
-vim -c PluginInstall
+vim +PluginInstall +qal
+
+sudo apt-get install silversearcher-ag
