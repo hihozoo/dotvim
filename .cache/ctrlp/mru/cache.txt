@@ -1,2 +1,0 @@
-/home/gzhuangduzhong/dotvim/_vimrc
-/home/gzhuangduzhong/dotvim/install.sh
