@@ -14,7 +14,7 @@ then
 	mv ~/.vim ~/_vim_bak.bak
 fi
 
-ln -s _vimrc ~/.vimrc
+ln -s `pwd`/_vimrc ~/.vimrc
 ln -s `pwd` ~/.vim
 
 vim -c PluginInstall

@@ -135,7 +135,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 let &termencoding=&encoding
 " 解决console输出乱码
-language messages zh_CN.utf-8
+" language messages zh_CN.utf-8
 
 set tags+=/home/gzhuangduzhong/workspace/tools/Python-2.7.8/tags
 set tags+=/home/gzhuangduzhong/workspace/libevent/tags
