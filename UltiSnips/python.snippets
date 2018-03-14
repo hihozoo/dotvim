@@ -1,0 +1,60 @@
+snippet tdc "timerdel for client"
+if ${1:${VISUAL}} is not None:
+|   timer.timer_del($1)
+|   $1 = None
+$0
+endsnippet
+
+snippet tds "TimerDel for server"
+if ${1:${VISUAL}} is not None:
+|   ${2:timer}.TimerDel($1)
+|   $1 = None
+$0
+endsnippet
+
+snippet toc "timer once for client"
+${1:${VISUAL}} = timer.timer_once(${2:1}, ${3:self}, '${4:fname}'$0)
+endsnippet
+
+snippet tos "TimerOnce for server"
+${1:${VISUAL}} = ${2:timer}.TimerOnce(${3:1}, ${4:sys.modules[__name__]}, '${5:fname}'$0)
+endsnippet
+
+snippet tpc "timer persist for client"
+${1:${VISUAL}} = timer.timer_persist(${2:1}, ${3:self}, '${4:fname}')
+endsnippet
+
+snippet tps "TimerPersist for server"
+${1:${VISUAL}} = ${2:timer}.TimerPersist(${3:1}, ${4:sys.modules[__name__]}, '${5:fname}'$0)
+endsnippet
+
+snippet impsconst
+from share import share_const
+endsnippet
+
+snippet impxtime
+from share import share_xtime
+endsnippet
+
+snippet imptimer
+from common import timer
+endsnippet
+
+snippet WidgetSet
+from ui import ui_widget
+
+class WidgetSet(ui_widget.UIWidgetBase):
+|   def loaded(self):
+|   |   self._frame["${1:BtnClose}"].goc_event.reg_click_cb(lambda _: self.hide())
+
+|   $0
+endsnippet
+
+snippet secdesc
+now = time_sync.get_server_time()
+secs = self.${1:_deadline} - now
+sec_desc = share_xtime.SecondDescDisplay(secs)
+self.${2:_txt_time}.text = sec_desc
+${0:from common import time_sync
+from share import share_xtime}
+endsnippet
