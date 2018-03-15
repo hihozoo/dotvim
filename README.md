@@ -5,5 +5,5 @@
 * cd dotvim && sh install.sh
 
 > ## 注意：
-* 1、ultisnips插件需要vim支持python2，可以从源码编译vim，加上python的支持(可以直接sh install_vim_with_python.sh来安装）
+* 1、ultisnips插件需要vim支持python2，可以从源码编译vim，加上python的支持(refer: https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source)
 * 2、silversearcher-ag 比 grep快很多。
