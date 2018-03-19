@@ -54,7 +54,7 @@ nnoremap <silent> <F3> :Grep<CR><CR><CR>
 nnoremap <silent> <F4> :GrepBuffer<CR><CR>
 
 Plugin 'mileszs/ack.vim'
-let g:ackprg = 'ag --nogroup --nocolor --column --path-to-agignore ~/.agignore'
+let g:ackprg = 'ag --nogroup --nocolor --column '
 nnoremap <silent> <F2> :Ack<CR><CR><CR><CR>
 
 Plugin 'vim-scripts/Mark'
@@ -86,6 +86,9 @@ let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 let g:UltiSnipsEditSplit="vertical"
 
 Bundle 'lsdr/monokai'
+
+Bundle 'craigemery/vim-autotag'
+let g:autotagTagsFile="tags"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -130,15 +133,12 @@ set backspace=indent,eol,start
 
 set ff=unix
 set ffs=unix
-set tags+=tags
+set tags=tags
 set encoding=utf-8
 set fileencoding=utf-8
 let &termencoding=&encoding
 " 解决console输出乱码
 " language messages zh_CN.utf-8
-
-set tags+=/home/gzhuangduzhong/workspace/tools/Python-2.7.8/tags
-set tags+=/home/gzhuangduzhong/workspace/libevent/tags
 
 highlight Search ctermbg=black ctermfg=yellow term=underline
 highlight ToDo ctermbg=black ctermfg=yellow term=underline
