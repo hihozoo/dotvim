@@ -85,8 +85,6 @@ let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-Bundle 'lsdr/monokai'
-
 Bundle 'craigemery/vim-autotag'
 let g:autotagTagsFile="tags"
 
@@ -111,16 +109,15 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set noexpandtab
+set relativenumber
+
+set term=ansi
+syntax enable
+set background=dark
+"colorscheme desert
 
 filetype on
 filetype plugin indent on
-
-" solarized
-syntax enable
-set background=dark
-"colorscheme solarized
-"let g:solarized_termcolors=256
-highlight PmenuSel ctermbg=Black ctermfg=Red
 
 set showmatch
 set ruler
@@ -192,7 +189,7 @@ autocmd BufReadPost *
 set viminfo^=%
 
 " Remove trailing whitespace when writing a buffer, but not for diff fi
-function RemoveTrailingWhitespace()
+function! RemoveTrailingWhitespace()
     if &ft != "diff"
         let b:curcol = col(".")
         let b:curline = line(".")
@@ -265,7 +262,7 @@ set laststatus=2
 
 " Auto add head info
 " .py file auto add header
-function HeaderPython()
+function! HeaderPython()
 	call append(0,"# -*- coding: utf-8 -*-")
 	call append(1,"# $Id$")
 	call append(2,"# @file")
@@ -304,13 +301,13 @@ if has("cscope")
     nmap fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
-function UpdateCache()
+function! UpdateCache()
 	silent !sh ~/.vim/bin/bg_run.sh ~/.vim/bin/make_cscope.sh $PWD/
 	silent !sh ~/.vim/bin/bg_run.sh ~/.vim/bin/make_ctags.sh $PWD/
 	redraw!
 	redrawstatus!
 endfunction
-command Update call UpdateCache()
+command! Update call UpdateCache()
 
 autocmd FileType c,cpp  map <buffer> <leader><space> :w<cr>:make<cr>
 autocmd FileType c,cpp  map <buffer> <leader>o :make run<cr><cr>
