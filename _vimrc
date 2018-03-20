@@ -81,7 +81,7 @@ let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-Bundle 'craigemery/vim-autotag'
+Bundle 'hduzh/vim-autotag'
 let g:autotagTagsFile="tags"
 
 " All of your Plugins must be added before the following line
