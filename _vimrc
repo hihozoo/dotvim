@@ -60,10 +60,6 @@ nnoremap <silent> <F2> :Ack<CR><CR><CR><CR>
 Plugin 'vim-scripts/Mark'
 nnoremap <leader>mc :MarkClear<CR>
 
-Plugin 'vim-scripts/autoload_cscope.vim'
-
-Bundle 'altercation/vim-colors-solarized'
-
 Plugin 'scrooloose/nerdtree'
 map <leader>t :NERDTreeToggle<CR>
 let NERDTreeShowLineNumbers=1
@@ -111,7 +107,6 @@ set softtabstop=4
 set noexpandtab
 set relativenumber
 
-set term=ansi
 syntax enable
 set background=dark
 "colorscheme desert
@@ -218,8 +213,8 @@ function! My_compile_command()
 
 		exec "!erlc -I ".include_path." -o ".output_path." -pa ".add_path." +debug_info ".expand("%:p")
 	elseif (l:ext == "py")
-		set makeprg=pylint\ --reports=n\ --msg-template=\"{path}:{line}:\ {msg_id}\ {symbol},\ {obj}\ {msg}\"\ %:p
-		set errorformat=%f:%l:\ %m
+		setlocal makeprg=pylint\ --reports=n\ --msg-template=\"{path}:{line}:\ {msg_id}\ {symbol},\ {obj}\ {msg}\"\ %:p
+		setlocal errorformat=%f:%l:\ %m
 		:wa|silent! make|cw|redraw!
 	elseif (index(["h", "cpp", "hpp", "cxx"], l:ext) >= 0)
 		setlocal makeprg=g++\ -o\ %:p:r\ %:p\ -std=c++11\ -W\ -Wall\ -lm
@@ -229,7 +224,7 @@ function! My_compile_command()
 endfunction
 nmap <F5> :call My_compile_command()<cr>
 
-function! VisualSelection(direction) range
+function! VisualSelection(direction)
     let l:saved_reg = @"
     execute "normal! vgvy"
 
