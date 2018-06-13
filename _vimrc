@@ -81,8 +81,8 @@ let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-Bundle 'hduzh/vim-autotag'
-let g:autotagTagsFile="tags"
+" Bundle 'hduzh/vim-autotag'
+" let g:autotagTagsFile="tags"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -261,43 +261,14 @@ function! HeaderPython()
 	call append(0,"# -*- coding: utf-8 -*-")
 	call append(1,"# $Id$")
 	call append(2,"# @file")
-	call append(3,"# @author gzhuangduzhong@corp.netease.com")
+	call append(3,"# @author hduzh")
 	normal G
 	normal o
 endf
 autocmd bufnewfile *.py call HeaderPython()
 nmap <leader>hp :call HeaderPython()<CR>
 
-" cscope
-if has("cscope")
-    " use :cstag instead of :tag
-    set cscopetag
-    " cscope的查找结果在格式上最多显示6层目录.
-    set cspc=6
-	" search from tag files before cscope databases
-	set csto=1
-    " 关闭autocscope插件的快捷健映射.防止和我们定义的快捷键冲突.
-    let g:autocscope_menus=0
-
-    nmap fs :cs find s <C-R>=expand("<cword>")<CR><CR>
-    " g:查找函数、宏、枚举等定义的位置
-    nmap fg :cs find g <C-R>=expand("<cword>")<CR><CR>
-    " c:查找光标下的函数被调用的地方
-    nmap fc :cs find c <C-R>=expand("<cword>")<CR><CR>
-    " t: 查找指定的字符串出现的地方
-    nmap ft :cs find t <C-R>=expand("<cword>")<CR><CR>
-    " e:egrep模式查找,相当于egrep功能
-    nmap fe :cs find e <C-R>=expand("<cword>")<CR><CR>
-    " f: 查找文件名,相当于lookupfile
-    nmap ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    " i: 查找当前文件名出现过的地方
-    nmap fi :cs find i <C-R>=expand("<cfile>")<CR><CR>
-    " d: 查找本当前函数调用的函数
-    nmap fd :cs find d <C-R>=expand("<cword>")<CR><CR>
-endif
-
 function! UpdateCache()
-	silent !sh ~/.vim/bin/bg_run.sh ~/.vim/bin/make_cscope.sh $PWD/
 	silent !sh ~/.vim/bin/bg_run.sh ~/.vim/bin/make_ctags.sh $PWD/
 	redraw!
 	redrawstatus!
