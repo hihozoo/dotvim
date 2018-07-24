@@ -69,21 +69,6 @@ let NERDTreeWinSize=31
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 let NERDTreeShowBookmarks=1
 
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsUsePythonVersion = 2
-let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" Bundle 'hduzh/vim-autotag'
-" let g:autotagTagsFile="tags"
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -270,6 +255,7 @@ nmap <leader>hp :call HeaderPython()<CR>
 
 function! UpdateCache()
 	silent !sh ~/.vim/bin/bg_run.sh ~/.vim/bin/make_ctags.sh $PWD/
+	silent !sh ~/.vim/bin/bg_run.sh ~/.vim/bin/make_cscope.sh $PWD/
 	redraw!
 	redrawstatus!
 endfunction
@@ -280,3 +266,30 @@ autocmd FileType c,cpp  map <buffer> <leader>o :make run<cr><cr>
 nmap <leader>cn :cn<cr>
 nmap <leader>cp :cp<cr>
 nmap <leader>cw :cw 10<cr>
+
+
+if has("cscope")
+	set csprg=/usr/bin/cscope
+	" change this to 1 to search ctags DBs first
+	set csto=1
+	set nocst
+	set nocsverb
+	" add any database in current directory
+	if filereadable("cscope.out")
+	    cs add cscope.out
+	" else add database pointed to by environment
+	elseif $CSCOPE_DB != ""
+	    cs add $CSCOPE_DB
+	endif
+	set csverb
+	set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+	nmap <leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>:cw<CR>
+	nmap <leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>:cw<CR>
+	nmap <leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>:cw<CR>
+	nmap <leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>:cw<CR>
+	nmap <leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>:cw<CR>
+	nmap <leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:cw<CR>
+	nmap <leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>:cw<CR>
+endif
