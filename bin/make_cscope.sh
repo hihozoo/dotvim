@@ -2,11 +2,10 @@
 
 SRC_PATH=$1
 
-find $SRC_PATH -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.py" > cscope.files
+cd ${SRC_PATH}
 
-cscope -bkq -i ./cscope.files
+find ./ -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.py" > cscope.files
+
+cscope -Rbkq -i ./cscope.files
 
 rm ./cscope.files
-
-mv ./cscope* $SRC_PATH
-
