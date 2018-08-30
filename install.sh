@@ -19,5 +19,5 @@ ln -s `pwd` ~/.vim
 
 vim +PluginInstall +qal
 
-sudo apt-get install ctags
-sudo apt-get install silversearcher-ag
+# sudo apt-get install ctags
+# sudo apt-get install silversearcher-ag
