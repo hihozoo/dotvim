@@ -90,7 +90,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set noexpandtab
-set relativenumber
 
 syntax enable
 set background=dark
@@ -174,7 +173,8 @@ function! RemoveTrailingWhitespace()
         let b:curcol = col(".")
         let b:curline = line(".")
         silent! %s/\s\+$//g
-        silent! %s/$//g
+        silent! %s/
+$//g
         call cursor(b:curline, b:curcol)
     endif
 endfunction
@@ -246,7 +246,7 @@ function! HeaderPython()
 	call append(0,"# -*- coding: utf-8 -*-")
 	call append(1,"# $Id$")
 	call append(2,"# @file")
-	call append(3,"# @author hduzh")
+	call append(3,"# @author zhujisheng@corp.netease.com(Zoo)")
 	normal G
 	normal o
 endf
